@@ -1,0 +1,8 @@
+aivoa-qms/backend/.env
+aivoa-qms/backend/pharma/
+aivoa-qms/backend/venv/
+aivoa-qms/backend/__pycache__/
+aivoa-qms/backend/*.pyc
+frontend/node_modules/
+frontend/dist/
+.DS_Store
