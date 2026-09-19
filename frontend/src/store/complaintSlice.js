@@ -13,18 +13,15 @@ const complaintSlice = createSlice({
     mergeComplaintData: (state, action) => {
       const aiData = action.payload;
 
-      // 🔥 THE SMART FIX: Check if both Product AND Defect are completely different
       const isNewProduct = aiData.product_name !== "" && state.product_name !== "" && aiData.product_name !== state.product_name;
       const isNewDefect = aiData.product_defect !== "" && state.product_defect !== "" && aiData.product_defect !== state.product_defect;
 
-      // Agar dono alag hain, matlab user nayi complaint daal raha hai -> Pehle Reset karo
       if (isNewProduct && isNewDefect) {
         Object.keys(initialState).forEach(key => {
           state[key] = initialState[key];
         });
       }
 
-      // Phir normal data merge karo (Khali values ignore karke)
       for (const key in aiData) {
         if (aiData[key] !== "" && aiData[key] !== undefined) {
           state[key] = aiData[key];

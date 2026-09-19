@@ -7,7 +7,6 @@ from typing import TypedDict, Optional, Dict
 
 load_dotenv()
 
-# Groq client initialize karna tumhari API key ke sath
 client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 
@@ -57,13 +56,6 @@ def process_chat_message(user_message: str):
         return {"error": f"Failed to process with Groq: {str(e)}"}
 
 
-# ==========================================
-# LANGGRAPH AGENT SETUP
-# Assignment ke hisaab se: LangGraph state graph jo intent
-# ke hisaab se Log Complaint Tool ya Edit Complaint Tool
-# par route karta hai.
-# ==========================================
-
 class AgentState(TypedDict):
     user_message: str
     result: Optional[Dict]
@@ -106,8 +98,6 @@ def route_intent(state: AgentState) -> str:
         return "edit"
     return "log"
 
-
-# Graph banate hain
 _graph = StateGraph(AgentState)
 _graph.add_node("log", log_complaint_node)
 _graph.add_node("edit", edit_complaint_node)

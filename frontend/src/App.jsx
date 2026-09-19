@@ -157,7 +157,7 @@ function App() {
       console.error(err);
     } finally {
       setUploading(false);
-      e.target.value = null; // reset file input taaki same file dobara upload ho sake
+      e.target.value = null; 
     }
   };
 
